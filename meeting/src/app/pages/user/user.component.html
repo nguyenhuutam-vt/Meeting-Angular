@@ -1,0 +1,29 @@
+<app-nav></app-nav>
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">User List</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3" *ngFor="let item of useList">
+            <div class="card">
+              <div class="card-header bg-secondary">{{ item.userName }}</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">{{ item.clientName }}</div>
+                  <div class="col-6">{{ item.role }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">Create New User</div>
+      <div class="card-body"></div>
+    </div>
+  </div>
+</div>

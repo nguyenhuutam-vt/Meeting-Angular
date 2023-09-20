@@ -1,0 +1,177 @@
+<app-nav></app-nav>
+<div class="row">
+  <div class="col-7">
+    <div class="card">
+      <div class="card-header bg-success">
+        Package Portal
+        <!-- <div class="col">
+            <button class="btn btn-sm btn-primary">Create New</button>
+          </div> -->
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sr No</th>
+              <th>Package Name</th>
+              <th>Cost</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="isloader == false">
+            <tr *ngFor="let package of packageArray; let sr = index">
+              <td>{{ sr + 1 }}</td>
+              <td>{{ package.packageName }}</td>
+              <td>{{ package.packageCost }}</td>
+              <td>{{ package.packageDescription }}</td>
+              <td>{{ package.isPackageActive == true ? "Fine" : "not ok" }}</td>
+              <td>
+                <button
+                  class="btn btn-success btn-sm"
+                  (click)="editRecord(package.packageId)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger btn-sm mx-2"
+                  (click)="onDelete(package.packageId)"
+                >
+                  <div
+                    class="spinner-border spinner-border-sm"
+                    *ngIf="isloader"
+                  ></div>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="isloader == true">
+            <tr>
+              <td colspan="6" class="text-center">
+                <div class="spinner-border text-muted"></div>
+                <div class="spinner-border text-primary"></div>
+                <div class="spinner-border text-success"></div>
+                <div class="spinner-border text-info"></div>
+                <div class="spinner-border text-warning"></div>
+                <div class="spinner-border text-danger"></div>
+                <div class="spinner-border text-secondary"></div>
+                <div class="spinner-border text-dark"></div>
+                <div class="spinner-border text-light"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="card">
+      <div class="card-header bg-success">Create Package</div>
+      <div class="card body">
+        <form action="">
+          <div class="row">
+            <div class="col-6">
+              <label for="" class="form-control">Package Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter"
+                name="packageName"
+                [(ngModel)]="packageObj.packageName"
+              />
+            </div>
+            <div class="col-6">
+              <label for="" class="form-control">Cost</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter"
+                name="packageCost"
+                [(ngModel)]="packageObj.packageCost"
+              />
+            </div>
+            <div class="col-12">
+              <label for="" class="form-control">Description</label>
+              <textarea
+                type="text"
+                class="form-control"
+                placeholder="Enter"
+                name="packageDescription"
+                [(ngModel)]="packageObj.packageDescription"
+              ></textarea>
+            </div>
+            <div class="col-6">
+              <label for="">Is Active</label>
+              <input
+                type="checkbox"
+                name="isPackageActive"
+                [(ngModel)]="packageObj.isPackageActive"
+              />
+            </div>
+          </div>
+          <!-- {{ packageObj | json }} -->
+          <div class="row text-center">
+            <div class="col-6">
+              <button class="btn btn-sm btn-secondary">Reset</button>
+            </div>
+            <div class="col-6">
+              <button
+                class="btn btn-sm btn-primary"
+                *ngIf="packageObj.packageId == 0"
+                (click)="createPackage()"
+              >
+                <div
+                  class="spinner-border spinner-border-sm"
+                  *ngIf="isloader"
+                ></div>
+                Save
+              </button>
+              <button
+                class="btn btn-sm btn-success"
+                *ngIf="packageObj.packageId != 0"
+                (click)="updatePackage()"
+              >
+                <div
+                  class="spinner-border spinner-border-sm"
+                  *ngIf="isloader"
+                ></div>
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <form>
+  <div class="mb-3 row">
+    <div class="col">
+      <button class="btn btn-sm btn-primary">Create New</button>
+    </div>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Package Name</th>
+      <th>Cost</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of packageArray; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ country.packageName }}
+      </td>
+      <td>{{ country.packageCost }}</td>
+      <td>{{ country.packageDescription }}</td>
+      <td>{{ country.isPackageActive }}</td>
+    </tr>
+  </tbody>
+</table> -->
